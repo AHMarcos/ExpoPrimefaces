@@ -18,33 +18,7 @@
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
     
-    <!--    BORRAR SI GENERA PROBLEMAS XD-->
-    <mime-mapping>
-        <extension>eot</extension>
-        <mime-type>application/vnd.ms-fontobject</mime-type>
-    </mime-mapping>
-    <mime-mapping>  
-        <extension>otf</extension>  
-        <mime-type>font/opentype</mime-type>  
-    </mime-mapping>      
-    <mime-mapping>  
-        <extension>ttf</extension>  
-        <mime-type>font/ttf</mime-type>  
-    </mime-mapping>      
-    <mime-mapping>  
-        <extension>woff</extension>  
-        <mime-type>font/woff</mime-type>  
-    </mime-mapping>
-    <mime-mapping>  
-        <extension>svg</extension>  
-        <mime-type>image/svg+xml</mime-type>  
-    </mime-mapping>
-    <mime-mapping>  
-        <extension>woff2</extension>  
-        <mime-type>font/woff2</mime-type>  
-    </mime-mapping>
-   
-    <!--   HASTA AQUI XD -->
+    
     
     
     <session-config>
@@ -53,10 +27,7 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/Persona.xhtml</welcome-file>
+        <welcome-file>faces/vista/Persona.xhtml</welcome-file>
     </welcome-file-list>
-    <error-page>
-        <error-code>404</error-code>
-        <location>/faces/Otros/error.xhtml</location>
-    </error-page>
+   
 </web-app>

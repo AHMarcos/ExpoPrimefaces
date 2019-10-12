@@ -13,7 +13,8 @@ public class PersonaImpl extends Conexion implements IPersona {
 
     @Override
     public void registrar(Persona persona) throws Exception {
-        String sql = "insert into PERSONA (NOMPER,APEPER,DNIPER,USUPER,PASSPER,ESTPER) values (?,?,?,?,?,?)";
+        String sql = "insert into PERSONA (NOMPER,APEPER,DNIPER,USUPER,PASSPER,ESTPER) "
+                + "values (?,?,?,?,?,?)";
         try {
             PreparedStatement ps = this.conectar().prepareStatement(sql);
             ps.setString(1, persona.getNOMPER());
