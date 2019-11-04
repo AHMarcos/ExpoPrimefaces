@@ -34,7 +34,8 @@
                 </p:panelGrid>
                 <br></br>
                 <br></br>
-                <p:commandButton value="Registrar" actionListener="#{personaC.registrar()}" update="Tabla :form"/>
+                <p:commandButton value="Registrar" actionListener="#{personaC.registrar()}"
+                                 update="form"/>
             </center>
         </h:form>
 
@@ -48,13 +49,11 @@
                          id="dtTabla"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                          paginator="true" 
-                         rows="20"
+                         rows="10"
                          rowHover="true"
                          style="margin-bottom:20px" 
                          filteredValue="#{personaC.listadoper2}"
                          emptyMessage="No hay Registro que mostrar">                   
-
-
 
                 <p:column headerText="NOMBRES">
                     <center>
@@ -102,9 +101,9 @@
                 <!--Eliminar-->
                 <p:column width="35">
                     <p:commandButton icon="ui-icon-circle-close" 
-                                     update=":mnsj dtTabla" 
+                                     update="dtTabla" 
                                      style="background:#EE6F6F;"
-                                     actionListener="#{personaC.eliminar(persona)}" 
+                                     actionListener="#{personaC.eliminar(lista)}" 
                                      id="elim">
                         <p:confirm header="Confirmación" 
                                    message="¿Deseas Eliminar? " 
@@ -154,8 +153,6 @@
                     <p:inputText value="#{personaC.persona.USUPER}"/>
                     <p:outputLabel value="CONTRASEÑA"/> 
                     <p:password value="#{personaC.persona.PASSPER}" label="true"/>
-                    <p:outputLabel value="ESTADO"/> 
-                    <p:inputText value="#{personaC.persona.ESTPER}"/>
                 </p:panelGrid>
 
                 <p:spacer/>

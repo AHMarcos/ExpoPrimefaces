@@ -22,7 +22,7 @@ public class PersonaImpl extends Conexion implements IPersona {
             ps.setString(3, persona.getDNIPER());
             ps.setString(4, persona.getUSUPER());
             ps.setString(5, persona.getPASSPER());
-            ps.setString(6, persona.getESTPER());
+            ps.setString(6, "A");
             ps.executeUpdate();
             ps.close();
         } catch (Exception e) {
@@ -43,7 +43,8 @@ public class PersonaImpl extends Conexion implements IPersona {
             ps.setString(3, persona.getDNIPER());
             ps.setString(4, persona.getUSUPER());
             ps.setString(5, persona.getPASSPER());
-            ps.setString(6, persona.getESTPER());
+            ps.setString(6, "A");
+            ps.setInt(7, persona.getIDPER());
             ps.executeUpdate();
             ps.close();
 
@@ -58,7 +59,7 @@ public class PersonaImpl extends Conexion implements IPersona {
 
     @Override
     public void eliminar(Persona persona) throws Exception {
-        String sql = "delete from PERSONA where IDPER=?";
+        String sql = "update PERSONA set ESTPER='I' where IDPER=?";
         try {
             PreparedStatement ps = this.conectar().prepareCall(sql);
             ps.setInt(1, persona.getIDPER());
@@ -75,10 +76,10 @@ public class PersonaImpl extends Conexion implements IPersona {
 
     @Override
     public List<Persona> listarPer() throws Exception {
-        this.conectar();
+        System.out.println("ESTOY LISTANDO :D");
         List<Persona> listado;
         Persona per;
-        String sql = "select * from PERSONA";
+        String sql = "select * from PERSONA WHERE ESTPER='A'";
         try {
             listado = new ArrayList();
             Statement st = this.conectar().createStatement();

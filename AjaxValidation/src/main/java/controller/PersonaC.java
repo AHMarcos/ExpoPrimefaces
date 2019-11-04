@@ -28,7 +28,7 @@ public class PersonaC implements Serializable {
     @PostConstruct
     public void Iniciar() {
         try {
-            listar();
+            listarDatos();
         } catch (Exception e) {
         }
     }
@@ -36,6 +36,8 @@ public class PersonaC implements Serializable {
     public void registrar() throws Exception {
         try {
             dao.registrar(persona);
+           listarDatos();
+           
         } catch (Exception e) {
             throw e;
         }
@@ -44,32 +46,31 @@ public class PersonaC implements Serializable {
     public void modificar() throws Exception {
         try {
             dao.modificar(persona);
+            listarDatos();
         } catch (Exception e) {
             throw e;
         }
-
     }
 
     public void eliminar(Persona persona) throws Exception {
         try {
             dao.eliminar(persona);
+            listarDatos();
         } catch (Exception e) {
             throw e;
         }
     }
 
-    public void listar() throws Exception {
+    public void listarDatos() throws Exception {
         try {
             listadoper = dao.listarPer();
-
         } catch (Exception e) {
             throw e;
         }
     }
+    
+    
 
-    
-    
-    
     
     public Persona getPersona() {
         return persona;
@@ -102,4 +103,6 @@ public class PersonaC implements Serializable {
     public void setListadoper2(List<Persona> listadoper2) {
         this.listadoper2 = listadoper2;
     }
+    
+    
 }
