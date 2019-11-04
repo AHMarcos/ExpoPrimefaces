@@ -8,6 +8,7 @@ public class Persona {
     private String DNIPER;
     private String USUPER;
     private String PASSPER;
+    private String TIPPER;
     private String ESTPER;
 
     public int getIDPER() {
@@ -58,6 +59,14 @@ public class Persona {
         this.PASSPER = PASSPER;
     }
 
+    public String getTIPPER() {
+        return TIPPER;
+    }
+
+    public void setTIPPER(String TIPPER) {
+        this.TIPPER = TIPPER;
+    }
+
     public String getESTPER() {
         return ESTPER;
     }
@@ -66,6 +75,4 @@ public class Persona {
         this.ESTPER = ESTPER;
     }
 
-
-    }
-
+}

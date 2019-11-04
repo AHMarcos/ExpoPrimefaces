@@ -14,6 +14,7 @@ import model.Persona;
 
 public class PersonaC implements Serializable {
 
+    
     private Persona persona;
     private PersonaImpl dao;
     private List<Persona> listadoper;
@@ -36,8 +37,8 @@ public class PersonaC implements Serializable {
     public void registrar() throws Exception {
         try {
             dao.registrar(persona);
-           listarDatos();
-           
+            listarDatos();
+
         } catch (Exception e) {
             throw e;
         }
@@ -68,10 +69,20 @@ public class PersonaC implements Serializable {
             throw e;
         }
     }
-    
-    
 
-    
+    public void limpiar() throws Exception {
+        try {
+            this.persona.setIDPER(0);
+            this.persona.setNOMPER("");
+            this.persona.setAPEPER("");
+            this.persona.setDNIPER("");
+            this.persona.setUSUPER("");
+            this.persona.setPASSPER("");
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
     public Persona getPersona() {
         return persona;
     }
@@ -103,6 +114,5 @@ public class PersonaC implements Serializable {
     public void setListadoper2(List<Persona> listadoper2) {
         this.listadoper2 = listadoper2;
     }
-    
-    
+
 }

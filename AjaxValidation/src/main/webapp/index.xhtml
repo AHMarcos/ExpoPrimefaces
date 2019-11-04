@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <link rel="icon" type="image/png" href="resources/imag/3494069.png" />
+        <title>Iniciar Sesión</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script src="resources/js/alerts.js" type="text/javascript"></script>
+        <link href="resources/css/estilos.css" rel="stylesheet" type="text/css"/>
+<!--        <f:event type="preRenderView" listener="{usuarioC.securityLogin()}"/>-->
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <link href="resources/css/cambiar.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+
+    <h:body style="background-image: url('resources/img/libro.jpg');">
+        <div class="valing-wrapper" id="login-page">
+            <div class="container">
+                <div class="center-align">
+                    <div class="row" >
+
+                        <div id="mydiv">
+                            <div class="card">
+                                <div class="card-content">
+<!--                                    <img class="responsive-img" style="max-width: 180px;" src="resources/img/descarga (1).png" />-->
+
+                                    <div class="center-align">
+                                        <h:form id="login-form">
+                                            <p:growl id="growlC" showDetail="true" sticky="true" />
+                                            <div class="row">
+                                                <div class="col s12 input-field" >
+                                                    <br/>
+                                                    <h:outputLabel for="dni" value="Usuario"/>
+                                                    <p:keyboard id="dni" value="#{usuarioC.user}"  required="true" requiredMessage="Se requiere Usuario!"/>
+                                                </div>  
+                                                <div class="col s12 input-field">
+                                                    <p:password id="contra" value="#{usuarioC.pass}" required="true" requiredMessage="Se requiere Contraseña!"/>
+                                                    <h:outputLabel for="contra" value="Contraseña"/> 
+<!--                                                    <a style="float:right;" href="resources/img/Manual Del Sistema.pdf" class="link footer-link"><strong style="color: #000000">¿Necesitas ayuda?</strong></a>                              -->
+                                                </div>
+                                                <div class="col s12 input-field">
+                                                    <br/>
+                                                    <br/>
+                                                    <p:commandButton id="BtnIniciarSesion" styleClass="waves-effect waves-light btn" style="background: #D72933" value="INICIAR SESIÓN" actionListener="#{usuarioC.startSession()}"  />
+                                                    <p:blockUI block="login-form" trigger="BtnIniciarSesion" />
+                                                    <p:blockUI block="login-form" widgetVar="BLOQUEO"/>
+
+                                                </div>
+                                            </div>
+
+                                            <p:blockUI widgetVar="blockLogin" block="login-form" trigger="BtnIniciarSesion">
+<!--                                                <p:graphicImage library="img" name="lg.wave-ball-preloader.gif" width="100"/>-->
+                                            </p:blockUI>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:body>
+
+
+</html>

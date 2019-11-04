@@ -6,6 +6,10 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:fn="http://java.sun.com/jsp/jstl/functions">
     <h:head>
+        <br></br>
+        <br></br>
+        <title>Persona</title>
+        <link rel="icon" type="image/png" href="../resources/imag/3494069.png" />
         <center>
             <h1 style="margin-top: 0;margin-bottom: 0;text-align-last: center;">RESGISTRO DE PERSONA</h1> 
         </center>
@@ -13,36 +17,58 @@
     <h:body>
         <br></br>
         <br></br>
-        
         <p:growl id="mnsj" showDetail="true" widgetVar="growlWV" sticky="9999999"/>
+        <center>
+            <h:form id="formIns">
+                <p:commandButton value="Agregar Persona" 
+                                 icon="ui-icon-plusthick"
+                                 oncomplete="PF('WVRegistrar').show();"
+                                 update="DGRegistrar"
+                                 styleClass="black-btn"
+                                 style="margin-top: 0;margin-bottom: 10px;"/>
 
-        <h:form id="formIns">
-            <center>
-                <p:panelGrid columns="4" id="Tabla">
-                    <p:outputLabel value="NOMBRE :"/> <p:inputText value="#{personaC.persona.NOMPER}" required="true" title="Ingrese Nombres" requiredMessage="Datos Incompletos" onfocus="true">
-                        <p:keyFilter regEx="/[a-z_A-Z_ñ _á_é_í_ó_ú]/"/>
-                    </p:inputText>
-                    <p:outputLabel value="APELLIDO :"/> <p:inputText value="#{personaC.persona.APEPER}" required="true" title="Ingrese Apellidos" requiredMessage="Datos Incompletos">
-                        <p:keyFilter regEx="/[a-z_A-Z_ñ _á_é_í_ó_ú]/"/>
-                    </p:inputText>
-                    <p:outputLabel value="DNI :"/> <p:inputText value="#{personaC.persona.DNIPER}" maxlength="8" size="6">
-                        <p:keyFilter regEx="/[0-9_]/i"/> 
-                    </p:inputText>
-                    <p:outputLabel value="USUARIO :"/> <p:inputText value="#{personaC.persona.USUPER}" title="Ingrese Usuario"/>
-                    <p:outputLabel value="CONTRASEÑA :"/> <p:password value="#{personaC.persona.PASSPER}" title="Ingrese Password"/>
+                <p:dialog showEffect="explode" 
+                          modal="true" 
+                          hideEffect="bounce" 
+                          header="REGISTRAR PERSONA"
+                          id="DGRegistrar" 
+                          widgetVar="WVRegistrar" >
+                    <center>
+                        
+                        <p:panelGrid columns="2" id="Tabla">
+                            <p:outputLabel value="NOMBRE :"/> <p:inputText value="#{personaC.persona.NOMPER}" required="true" title="Ingrese Nombres" requiredMessage="Datos Incompletos" onfocus="true">
+                                <p:keyFilter regEx="/[a-z_A-Z_ñ _á_é_í_ó_ú]/"/>
+                            </p:inputText>
+                            <p:outputLabel value="APELLIDO :"/> <p:inputText value="#{personaC.persona.APEPER}" required="true" title="Ingrese Apellidos" requiredMessage="Datos Incompletos">
+                                <p:keyFilter regEx="/[a-z_A-Z_ñ _á_é_í_ó_ú]/"/>
+                            </p:inputText>
+                            <p:outputLabel value="DNI :"/> <p:inputText value="#{personaC.persona.DNIPER}" maxlength="8" size="6">
+                                <p:keyFilter regEx="/[0-9_]/i"/> 
+                            </p:inputText>
+                            <p:outputLabel value="USUARIO :"/> <p:inputText value="#{personaC.persona.USUPER}" title="Ingrese Usuario"/>
+                            <p:outputLabel value="CONTRASEÑA :"/> <p:password value="#{personaC.persona.PASSPER}" title="Ingrese Password"/>
 
-                </p:panelGrid>
-                <br></br>
-                <br></br>
-                <p:commandButton value="Registrar" actionListener="#{personaC.registrar()}"
-                                 update="form"/>
-            </center>
-        </h:form>
+                        </p:panelGrid>
+                            
+                        <br></br>
+                        <br></br>
+                        <p:commandButton value="Registrar" 
+                                         actionListener="#{personaC.registrar()}"
+                                         update="form"/>
+                        <p:commandButton value="Limpiar"
+                                         icon="ui-icon-trash"
+                                         actionListener="#{personaC.limpiar()}" 
+                                         update="Tabla" process="@this" 
+                                         styleClass="black-btn"/>
+                    </center>
+                </p:dialog>
 
+            </h:form>
+        </center>
         <br></br>
         <br></br>
 
-
+       
         <h:form id="form">
             <p:dataTable value="#{personaC.listadoper}"
                          var="lista" 
@@ -123,7 +149,7 @@
 
             </p:dataTable>
         </h:form>
-
+           
         <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="EDITAR PERSONA"
                   id="dlgDatos" widgetVar="wdlgDatos" >
             <h:form>
@@ -192,7 +218,7 @@
                                      type="button" 
                                      styleClass="ui-confirmdialog-no"
                                      icon="ui-icon-close" 
-                                     style="background: #FFC107"/>
+                                     style="background: #EE6F6F"/>
                 </center>
             </p:confirmDialog>
         </h:form>  
