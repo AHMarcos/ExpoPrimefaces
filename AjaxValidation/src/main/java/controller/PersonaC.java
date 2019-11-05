@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import model.Persona;
 
@@ -14,7 +16,6 @@ import model.Persona;
 
 public class PersonaC implements Serializable {
 
-    
     private Persona persona;
     private PersonaImpl dao;
     private List<Persona> listadoper;
@@ -38,7 +39,8 @@ public class PersonaC implements Serializable {
         try {
             dao.registrar(persona);
             listarDatos();
-
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro", "Completado.."));
         } catch (Exception e) {
             throw e;
         }
@@ -48,6 +50,8 @@ public class PersonaC implements Serializable {
         try {
             dao.modificar(persona);
             listarDatos();
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro", "Modificado.."));
         } catch (Exception e) {
             throw e;
         }
@@ -55,8 +59,10 @@ public class PersonaC implements Serializable {
 
     public void eliminar(Persona persona) throws Exception {
         try {
-            dao.eliminar(persona);
-            listarDatos();
+            dao.eliminar(persona);      
+            listarDatos();        
+             FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro", "Eliminado.."));
         } catch (Exception e) {
             throw e;
         }

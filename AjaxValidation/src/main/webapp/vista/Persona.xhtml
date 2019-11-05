@@ -34,22 +34,34 @@
                           id="DGRegistrar" 
                           widgetVar="WVRegistrar" >
                     <center>
-                        
-                        <p:panelGrid columns="2" id="Tabla">
-                            <p:outputLabel value="NOMBRE :"/> <p:inputText value="#{personaC.persona.NOMPER}" required="true" title="Ingrese Nombres" requiredMessage="Datos Incompletos" onfocus="true">
+
+                        <p:panelGrid id="Tabla"
+                                     columns="2">                                    
+                            <p:outputLabel value="NOMBRE :"/> 
+                            <p:inputText value="#{personaC.persona.NOMPER}" 
+                                         required="true"                                          
+                                         requiredMessage="Datos Incompletos"
+                                         onfocus="true">
                                 <p:keyFilter regEx="/[a-z_A-Z_ñ _á_é_í_ó_ú]/"/>
                             </p:inputText>
-                            <p:outputLabel value="APELLIDO :"/> <p:inputText value="#{personaC.persona.APEPER}" required="true" title="Ingrese Apellidos" requiredMessage="Datos Incompletos">
+                            <p:outputLabel value="APELLIDO :"/> 
+                            <p:inputText value="#{personaC.persona.APEPER}" 
+                                         required="true"
+                                         requiredMessage="Datos Incompletos">
                                 <p:keyFilter regEx="/[a-z_A-Z_ñ _á_é_í_ó_ú]/"/>
                             </p:inputText>
-                            <p:outputLabel value="DNI :"/> <p:inputText value="#{personaC.persona.DNIPER}" maxlength="8" size="6">
+                            <p:outputLabel value="DNI :"/> 
+                            <p:inputText value="#{personaC.persona.DNIPER}" 
+                                         required="true"
+                                         requiredMessage="Ingrese DNI"
+                                         maxlength="8" size="6">
                                 <p:keyFilter regEx="/[0-9_]/i"/> 
                             </p:inputText>
                             <p:outputLabel value="USUARIO :"/> <p:inputText value="#{personaC.persona.USUPER}" title="Ingrese Usuario"/>
                             <p:outputLabel value="CONTRASEÑA :"/> <p:password value="#{personaC.persona.PASSPER}" title="Ingrese Password"/>
 
                         </p:panelGrid>
-                            
+
                         <br></br>
                         <br></br>
                         <p:commandButton value="Registrar" 
@@ -67,9 +79,101 @@
         </center>
         <br></br>
         <br></br>
+        <!--BASICO       -->
+        <h:form  id="sad">
+            <p:commandButton id="imageBtn" value="Basic" type="button" />
+            <p:overlayPanel id="imagePanel" for="imageBtn" hideEffect="fade">
+                <p:graphicImage  name="imag/rick-and-morty.jpg" width="300" />
+            </p:overlayPanel>
 
-       
+        </h:form>
+        <!--DINAMICO-->
         <h:form id="form">
+            <p:commandButton id="movieBtn" value="Dynamic" type="button" />
+            <p:overlayPanel id="moviePanel" for="movieBtn" hideEffect="fade" dynamic="true" style="width:600px" modal="true">
+                <p:dataTable value="#{personaC.listadoper}"
+                             var="lista" 
+                             id="dtTabla"                               
+                             paginator="true" 
+                             rows="10"
+                             rowHover="true"
+                             style="margin-bottom:20px"                              
+                             emptyMessage="No hay Registro que mostrar">
+
+                    <p:column headerText="NOMBRE">
+                        <h:outputText value="#{personaC.persona.NOMPER}" />
+                    </p:column>
+
+                    <p:column headerText="APELLIDO">
+                        <h:outputText value="#{personaC.persona.APEPER}" />
+                    </p:column>
+
+                    <p:column headerText="DNI">
+                        <h:outputText value="#{personaC.persona.DNIPER}" />
+                    </p:column>
+
+                    <p:column headerText="USER">
+                        <h:outputText value="#{personaC.persona.USUPER}" />
+                    </p:column>
+
+                    <p:column headerText="ESTADO">
+                        <h:outputText value="#{personaC.persona.ESTPER}" />
+                    </p:column>
+
+                    <!-- Modificar -->
+                    <p:column width="35">
+                        <p:commandButton icon="ui-icon-pencil"
+                                         oncomplete="PF('wdlgDatos').show();" 
+                                         update=":dlgDatos dtTabla" 
+                                         id="grow"
+                                         styleClass="orange-btn">
+                            <f:setPropertyActionListener value="#{lista}" target="#{personaC.persona}"/>                 
+                        </p:commandButton>
+                        <p:tooltip id="toolTipGrow" 
+                                   for="grow" 
+                                   value="MODIFICAR"
+                                   showEffect="clip" 
+                                   hideEffect="explode" 
+                                   position="left"/>
+                    </p:column> 
+                    <!--Eliminar-->
+                    <p:column width="35">
+                        <p:commandButton icon="ui-icon-circle-close" 
+                                         update="dtTabla" 
+                                         style="background:#EE6F6F;"
+                                         actionListener="#{personaC.eliminar(lista)}" 
+                                         id="elim">
+                            <p:confirm header="Confirmación" 
+                                       message="¿Deseas Eliminar? " 
+                                       icon="ui-icon-alert" />
+                            <p:tooltip trackMouse="true"/>
+                        </p:commandButton>
+                        <p:tooltip id="eliminar" 
+                                   for="elim" 
+                                   value="ELIMINAR"
+                                   showEffect="clip" 
+                                   hideEffect="explode" 
+                                   position="left"/>
+                    </p:column>
+                </p:dataTable>
+            </p:overlayPanel>
+        </h:form>
+
+        
+                                            <!--CUSTOM Options-->
+                                            
+<!--        <p:graphicImage id="img" name="imag/rick-and-morty.jpg" style="cursor:pointer" title="Custom Options" />
+        <p:overlayPanel id="imgPanel" for="img" showEffect="blind" hideEffect="explode" showEvent="mouseover" hideEvent="mousedown"
+                        dismissable="false" showCloseIcon="true">
+            <p:imageSwitch effect="fade" style="width:300px;height:188px;">
+                <ui:repeat value="{imageSwitchView.images}" var="image">
+                    <p:graphicImage name="/demo/images/nature/{image}" width="300" />
+                </ui:repeat>
+            </p:imageSwitch>
+        </p:overlayPanel>  -->
+
+
+        <h:form id="gaaa">
             <p:dataTable value="#{personaC.listadoper}"
                          var="lista" 
                          id="dtTabla"
@@ -149,7 +253,7 @@
 
             </p:dataTable>
         </h:form>
-           
+
         <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="EDITAR PERSONA"
                   id="dlgDatos" widgetVar="wdlgDatos" >
             <h:form>
